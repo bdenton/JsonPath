@@ -95,7 +95,8 @@ public class ArrayPathToken extends PathToken {
         }
         from = Math.max(0, from);
 
-        logger.debug("Slice from index on array with length: {}. From index: {} to: {}. Input: {}", length, from, length - 1, toString());
+    	// BD: compatibility with slf4j older than 1.7
+        logger.debug("Slice from index on array with length: {}. From index: {} to: {}. Input: {}", new Object[]{length, from, length - 1, toString()});
 
         if (length == 0 || from >= length) {
             return;
@@ -116,7 +117,8 @@ public class ArrayPathToken extends PathToken {
             return;
         }
 
-        logger.debug("Slice between indexes on array with length: {}. From index: {} to: {}. Input: {}", length, from, to, toString());
+    	// BD: compatibility with slf4j older than 1.7
+        logger.debug("Slice between indexes on array with length: {}. From index: {} to: {}. Input: {}", new Object[]{length, from, to, toString()});
 
         for (int i = from; i < to; i++) {
             handleArrayIndex(i, currentPath, model, ctx);
@@ -135,7 +137,8 @@ public class ArrayPathToken extends PathToken {
         }
         to = Math.min(length, to);
 
-        logger.debug("Slice to index on array with length: {}. From index: 0 to: {}. Input: {}", length, to, toString());
+    	// BD: compatibility with slf4j older than 1.7
+        logger.debug("Slice to index on array with length: {}. From index: 0 to: {}. Input: {}", new Object[]{length, to, toString()});
 
         for (int i = 0; i < to; i++) {
             handleArrayIndex(i, currentPath, model, ctx);

@@ -14,6 +14,21 @@
  */
 package com.jayway.jsonpath.internal;
 
+import static com.jayway.jsonpath.JsonPath.compile;
+import static com.jayway.jsonpath.internal.Utils.notEmpty;
+import static com.jayway.jsonpath.internal.Utils.notNull;
+import static java.util.Arrays.asList;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.EvaluationListener;
@@ -26,20 +41,6 @@ import com.jayway.jsonpath.ReadContext;
 import com.jayway.jsonpath.TypeRef;
 import com.jayway.jsonpath.spi.cache.Cache;
 import com.jayway.jsonpath.spi.cache.CacheProvider;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.LinkedList;
-import java.util.List;
-
-import static com.jayway.jsonpath.JsonPath.compile;
-import static com.jayway.jsonpath.internal.Utils.notEmpty;
-import static com.jayway.jsonpath.internal.Utils.notNull;
-import static java.util.Arrays.asList;
 
 public class JsonContext implements ParseContext, DocumentContext {
 
@@ -283,7 +284,8 @@ public class JsonContext implements ParseContext, DocumentContext {
         List<String> modified = path.put(json, key, value, configuration.addOptions(Option.AS_PATH_LIST));
         if(logger.isDebugEnabled()){
             for (String p : modified) {
-                logger.debug("Put path {} key {} value {}", p, key, value);
+            	// BD: compatibility with slf4j older than 1.7
+                logger.debug("Put path {} key {} value {}", new Object[]{p, key, value});
             }
         }
         return this;
