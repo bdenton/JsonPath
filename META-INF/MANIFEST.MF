@@ -4,10 +4,10 @@ Implementation-Title: json-path
 Implementation-Version: 2.2.0
 Bundle-Name: json-path
 Bundle-SymbolicName: com.jayway.jsonpath.json-path
-Bundle-Version: 2.2.0.Akana
-Export-Package: com.jayway.jsonpath;version="2.2.0.Akana",
- com.jayway.jsonpath.spi.json;version="2.2.0.Akana",
- com.jayway.jsonpath.spi.mapper;version="2.2.0.Akana"
+Bundle-Version: 2.2.0
+Export-Package: com.jayway.jsonpath;version="2.2.0",
+ com.jayway.jsonpath.spi.json;version="2.2.0",
+ com.jayway.jsonpath.spi.mapper;version="2.2.0"
 Import-Package: com.fasterxml.jackson.core;resolution:=optional,
  com.fasterxml.jackson.databind;resolution:=optional,
  com.fasterxml.jackson.databind.node;resolution:=optional,
